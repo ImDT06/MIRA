@@ -1,0 +1,348 @@
+@import "tailwindcss";
+
+/* Token màu cho Sáng và Tối. */
+:root {
+  color-scheme: light;
+  --bg-default: #f7f7f8;
+  --bg-surface: #ffffff;
+  --bg-muted: #efeff1;
+  --primary: #1c1c22;
+  --on-primary: #ffffff;
+  --accent: #5e52b8;
+  --accent-strong: #463c96;
+  --accent-soft: #eeecfa;
+  --text-primary: #1c1c22;
+  --text-secondary: #62626d;
+  --border-default: #e2e2e6;
+  --border-divider: #eeeef0;
+  --success: #2f6b4f;
+  --success-soft: #e3f1ea;
+  --warning: #8a5300;
+  --warning-soft: #fdf1de;
+  --danger: #a23b3b;
+  --danger-soft: #fbe7e4;
+  --overlay: rgb(24 24 27 / 0.42);
+  --brief-bg: #1f1d2e;
+  --brief-text: #ffffff;
+  --brief-muted: #c4c3d2;
+  --card-shadow: 0 1px 2px rgb(24 24 27 / 0.05), 0 1px 4px rgb(24 24 27 / 0.03);
+  --hover-shadow: 0 6px 18px rgb(24 24 27 / 0.11);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg-default: #111113;
+  --bg-surface: #1a1a1e;
+  --bg-muted: #27272c;
+  --primary: #ededf0;
+  --on-primary: #111113;
+  --accent: #a096f2;
+  --accent-strong: #c4bdf8;
+  --accent-soft: #2a2745;
+  --text-primary: #ededf0;
+  --text-secondary: #a1a1aa;
+  --border-default: #303036;
+  --border-divider: #242428;
+  --success: #6cc59a;
+  --warning: #f0b866;
+  --danger: #f08a8a;
+  --success-soft: #1d3a2e;
+  --warning-soft: #3d2e14;
+  --danger-soft: #43222a;
+  --overlay: rgb(0 0 0 / 0.6);
+  --brief-bg: #232136;
+  --brief-text: #f1f0f7;
+  --brief-muted: #aeadc2;
+  --card-shadow: 0 1px 2px rgb(0 0 0 / 0.3);
+  --hover-shadow: 0 6px 18px rgb(0 0 0 / 0.45);
+}
+
+@theme inline {
+  --color-*: initial;
+  --color-bg-default: var(--bg-default);
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-muted: var(--bg-muted);
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-soft: var(--accent-soft);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-border-default: var(--border-default);
+  --color-border-divider: var(--border-divider);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-overlay: var(--overlay);
+  --color-brief-bg: var(--brief-bg);
+  --color-brief-text: var(--brief-text);
+  --color-brief-muted: var(--brief-muted);
+
+  --font-sans: "Inter Variable", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --radius-tag: 8px;
+  --radius-ctl: 12px;
+  --radius-card: 16px;
+  --radius-dlg: 24px;
+  --shadow-float: 0 12px 32px rgb(24 24 27 / 0.16), 0 0 0 1px rgb(24 24 27 / 0.04);
+  --shadow-card: var(--card-shadow);
+  --shadow-hover: var(--hover-shadow);
+}
+
+/* Thang chữ gọn, nhẹ: tiêu đề 600 với tracking âm, nội dung 400, điều khiển 500. */
+@utility t-h1 {
+  font-size: 26px;
+  line-height: 34px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  @media (max-width: 767.98px) {
+    font-size: 24px;
+    line-height: 32px;
+  }
+}
+@utility t-h2 {
+  font-size: 22px;
+  line-height: 30px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  @media (max-width: 767.98px) {
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
+@utility t-h3 {
+  font-size: 17px;
+  line-height: 24px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+@utility t-h4 {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+@utility t-h5 {
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 600;
+}
+@utility t-body {
+  font-size: 15px;
+  line-height: 24px;
+  font-weight: 400;
+}
+@utility t-small {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+@utility t-caption {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+}
+@utility t-overline {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+}
+@utility t-button {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+/* Phản hồi khi nhấn, dùng cho mọi nút. */
+@utility press {
+  transition-property: background-color, border-color, color, box-shadow, translate, scale, opacity;
+  transition-duration: 150ms;
+  transition-timing-function: ease-out;
+  &:active:not(:disabled) {
+    scale: 0.97;
+  }
+}
+/* Nhấc nhẹ khi hover, chỉ dùng cho thứ bấm được cả khối (thẻ ghi chú, gợi ý). */
+@utility lift {
+  transition-property: background-color, border-color, color, box-shadow, translate, scale;
+  transition-duration: 150ms;
+  transition-timing-function: ease-out;
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    &:hover {
+      translate: 0 -2px;
+      box-shadow: var(--hover-shadow);
+    }
+  }
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    background: var(--bg-default);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 24px;
+    font-feature-settings: "cv11", "ss03";
+    -webkit-font-smoothing: antialiased;
+  }
+  /* iOS tự phóng to khi focus ô nhập dưới 16 px. */
+  @media (max-width: 767.98px) {
+    input,
+    textarea,
+    select {
+      font-size: 16px !important;
+    }
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+@keyframes dialog-out {
+  to {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+@keyframes drawer-in {
+  from {
+    transform: translateX(-100%);
+  }
+}
+@keyframes drawer-out {
+  to {
+    transform: translateX(-100%);
+  }
+}
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+}
+@keyframes check-pop {
+  from {
+    transform: scale(0.5);
+  }
+  60% {
+    transform: scale(1.15);
+  }
+}
+@keyframes typing {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.fade[data-state="open"] {
+  animation: fade-in 200ms ease-out;
+}
+.fade[data-state="closed"] {
+  animation: fade-out 200ms ease-out;
+}
+.page-enter {
+  animation: rise-in 220ms ease-out;
+}
+.message-in {
+  animation: rise-in 200ms ease-out;
+}
+.dialog-pop[data-state="open"] {
+  animation: dialog-in 200ms ease-out;
+}
+.dialog-pop[data-state="closed"] {
+  animation: dialog-out 150ms ease-in;
+}
+@keyframes sheet-in {
+  from {
+    transform: translateX(100%);
+  }
+}
+@keyframes sheet-out {
+  to {
+    transform: translateX(100%);
+  }
+}
+.sheet[data-state="open"] {
+  animation: sheet-in 220ms ease-out;
+}
+.sheet[data-state="closed"] {
+  animation: sheet-out 180ms ease-in;
+}
+.pop {
+  transform-origin: var(--radix-popover-content-transform-origin);
+}
+.pop[data-state="open"] {
+  animation: dialog-in 150ms ease-out;
+}
+.pop[data-state="closed"] {
+  animation: dialog-out 100ms ease-in;
+}
+.drawer[data-state="open"] {
+  animation: drawer-in 220ms ease-out;
+}
+.drawer[data-state="closed"] {
+  animation: drawer-out 180ms ease-in;
+}
+.toast-in {
+  animation: toast-in 200ms ease-out;
+}
+.check-pop {
+  animation: check-pop 200ms ease-out;
+}
+.typing-dot {
+  animation: typing 1.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
